@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 import bookRoutes from './routes/bookRoutes';
 import customerRoutes from './routes/customerRoutes';
 import borrowRoutes from './routes/borrowRoutes';
+import testRoutes from './routes/testRoutes'
 
 
 const app = express();
@@ -19,6 +20,7 @@ mongoose.connect('mongodb://localhost:27017/library', {
 app.use('/books', bookRoutes);
 app.use('/customers', customerRoutes);
 app.use('/borrow', borrowRoutes);
+app.use('/test', testRoutes)
 
 app.listen(3000, () => {
     console.log('library api running port 3000');
