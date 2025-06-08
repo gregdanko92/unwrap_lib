@@ -1,10 +1,10 @@
 import express from 'express';
-import { createCustomer, getCustomer, getBorrowedBooks } from '../controllers/customerController';
+import { createCustomer, getCustomer, getCustomerBooks } from '../controllers/customerController';
 
 const router = express.Router();
 
-router.post('/', createCustomer);
-router.get('/:id', getCustomer);
-router.get('/:id/borrowed', getBorrowedBooks);
+router.post('/customers', createCustomer);
+router.get('/customers/:customer_id', getCustomer);
+router.get('/customers/:customer_id/books', getCustomerBooks);
 
 export default router;

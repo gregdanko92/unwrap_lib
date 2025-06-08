@@ -3,7 +3,7 @@ import { addBook, getBook } from '../controllers/bookController';
 
 const router = express.Router();
 
-router.post('/', addBook);
-router.get('/:id', getBook);
+router.post('/books', addBook);
+router.get('/books/:isbn', getBook);
 
 export default router;

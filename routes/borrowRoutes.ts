@@ -1,11 +1,9 @@
 import express from 'express';
-import { borrowBook, returnBook } from '../controllers/borrowController';
-import { validateBorrowRequest } from '../middleware/validateRequest';
-
+import { checkoutBook, returnBook } from '../controllers/borrowController';
 
 const router = express.Router();
 
-router.post('/checkout',validateBorrowRequest, borrowBook);
-router.post('/return', returnBook);
+router.post('/checkouts', checkoutBook);
+router.post('/returns', returnBook);
 
 export default router;

@@ -1,19 +1,34 @@
 import { Request, Response } from 'express';
-import Book from '../models/Book';
+import { books } from '../data/store';
 
-export const addBook = async (req: Request, res: Response): Promise<void> => {
-    const { title, author, totalCopies } = req.body;
-    const book = new Book({
+export const addBook = (req: Request, res: Response): void => {
+    const { title, author, isbn, copies } = req.body;
+
+    const existingBook = books.find(b => b.isbn === isbn);
+    if (existingBook) {
+        res.status(400).send({ error: 'Book with this ISBN already exists' });
+        return;
+    }
+
+    const newBook = {
         title,
         author,
-        totalCopies,
-        availableCopies: totalCopies
-    });
-    await book.save();
-    res.send(book);
+        isbn,
+        copies,
+        available_copies: copies
+    };
+
+    books.push(newBook);
+    res.status(201).send(newBook);
 };
 
-export const getBook = async (req: Request, res: Response): Promise<void> => {
-    const book = await Book.findById(req.params.id);
-    res.send(book);
+export const getBook = (req: Request, res: Response): void => {
+    const book = books.find(b => b.isbn === req.params.isbn);
+
+    if (!book) {
+        res.status(404).send({ error: 'Book not found' });
+        return;
+    }
+
+    res.status(200).send(book);
 };

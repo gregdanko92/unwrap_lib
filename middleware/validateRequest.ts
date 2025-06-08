@@ -1,3 +1,5 @@
+// adding this to validate borrow requests, making sure all the necessary info is provided in the request
+
 import { Request, Response, NextFunction } from 'express';
 
 export const validateBorrowRequest = (req: Request, res: Response, next: NextFunction): void => {

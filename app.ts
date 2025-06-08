@@ -1,27 +1,23 @@
-import express, {Application} from 'express'
-import mongoose from 'mongoose'
-import bodyParser from 'body-parser'
+import express, { Application } from 'express';
+import bodyParser from 'body-parser';
 
 import bookRoutes from './routes/bookRoutes';
 import customerRoutes from './routes/customerRoutes';
-import borrowRoutes from './routes/borrowRoutes';
-import testRoutes from './routes/testRoutes'
+import checkoutRoutes from './routes/borrowRoutes';
+import returnRoutes from './routes/borrowRoutes';
+import resetRoutes from './routes/resetRoutes';
 
-
-const app = express();
+const app: Application = express();
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost:27017/library', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-} as mongoose.ConnectOptions);
-
-// Routes
-app.use('/books', bookRoutes);
-app.use('/customers', customerRoutes);
-app.use('/borrow', borrowRoutes);
-app.use('/test', testRoutes)
+app.use('/api', bookRoutes);
+app.use('/api', customerRoutes);
+app.use('/api', checkoutRoutes);
+app.use('/api', returnRoutes);
+app.use('/api', resetRoutes);
 
 app.listen(3000, () => {
-    console.log('library api running port 3000');
+    console.log('Library API running on port 3000');
 });
+
+export default app;

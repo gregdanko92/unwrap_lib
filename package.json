@@ -2,11 +2,11 @@
   "name": "unwrap-library-service",
   "version": "1.0.0",
   "main": "index.js",
- "scripts": {
+  "scripts": {
     "start": "ts-node app.ts",
     "build": "tsc",
     "start:prod": "node dist/app.js"
-},
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -14,12 +14,14 @@
   "dependencies": {
     "body-parser": "^2.2.0",
     "express": "^5.1.0",
-    "mongoose": "^8.15.1"
+    "mongoose": "^8.15.1",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
     "@types/mongoose": "^5.11.96",
     "@types/node": "^22.15.30",
+    "@types/uuid": "^10.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
