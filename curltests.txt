@@ -1,0 +1,58 @@
+Test 0 : Reset System
+
+curl -X POST http://localhost:3000/api/reset
+
+Test 1: Add a book
+
+curl -X POST http://localhost:3000/api/books \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Anarchy, State, and Utopia",
+    "author": "Robert Nozick",
+    "isbn": "1111",
+    "copies": 100
+  }'
+
+
+  Test 2: Get Book details
+
+  curl -X GET http://localhost:3000/api/books/9780743273565
+
+Test 3: Create new customer
+
+curl -X POST http://localhost:3000/api/customers \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Greg Danko",
+    "email": "gregdanko@email.com",
+    "customer_id": "CUST002"
+  }'
+
+Test 4: Get Customer details
+
+curl -X GET http://localhost:3000/api/customers/CUST001
+
+Test 5: Test Checkout
+    note: make sure there's a valid customer with custoemr_id and a book with isbn first
+
+DUE_DATE=$(date -v+14d "+%Y-%m-%d") 
+
+curl -X POST http://localhost:3000/api/checkouts \
+  -H "Content-Type: application/json" \
+  -d "{
+    \"isbn\": \"1111\",
+    \"customer_id\": \"CUST002\",
+    \"due_date\": \"$DUE_DATE\"
+  }"
+
+Test 6: Get Customer's checked out booked
+curl -X GET http://localhost:3000/api/customers/CUST002/books
+
+Test 7: return a book
+
+curl -X POST http://localhost:3000/api/returns \
+  -H "Content-Type: application/json" \
+  -d '{
+    "isbn": "1111",
+    "customer_id": "CUST002"
+  }'
