@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { customers, books, checkouts } from '../data/store';
+import { customers, checkouts, books } from '../data/store';
 
 export const createCustomer = (req: Request, res: Response): void => {
     const { name, email, customer_id } = req.body;

@@ -3,8 +3,7 @@ import bodyParser from 'body-parser';
 
 import bookRoutes from './routes/bookRoutes';
 import customerRoutes from './routes/customerRoutes';
-import checkoutRoutes from './routes/borrowRoutes';
-import returnRoutes from './routes/borrowRoutes';
+import borrowRoutes from './routes/borrowRoutes';
 import resetRoutes from './routes/resetRoutes';
 
 const app: Application = express();
@@ -12,8 +11,7 @@ app.use(bodyParser.json());
 
 app.use('/api', bookRoutes);
 app.use('/api', customerRoutes);
-app.use('/api', checkoutRoutes);
-app.use('/api', returnRoutes);
+app.use('/api', borrowRoutes);
 app.use('/api', resetRoutes);
 
 app.listen(3000, () => {

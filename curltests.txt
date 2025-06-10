@@ -16,7 +16,7 @@ curl -X POST http://localhost:3000/api/books \
 
   Test 2: Get Book details
 
-  curl -X GET http://localhost:3000/api/books/9780743273565
+  curl -X GET http://localhost:3000/api/books/1111
 
 Test 3: Create new customer
 
@@ -30,7 +30,7 @@ curl -X POST http://localhost:3000/api/customers \
 
 Test 4: Get Customer details
 
-curl -X GET http://localhost:3000/api/customers/CUST001
+curl -X GET http://localhost:3000/api/customers/CUST002
 
 Test 5: Test Checkout
     note: make sure there's a valid customer with custoemr_id and a book with isbn first
