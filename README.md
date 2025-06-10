@@ -1,7 +1,7 @@
-// Library Management System
+Library Management System
     Restful API system for managing customers, books, and borrowing procedures
 
-// Base URL: http://localhost:3000/api
+Base URL: http://localhost:3000/api
 
 
 Set up Procedure:
