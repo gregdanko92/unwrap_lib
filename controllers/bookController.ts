@@ -32,3 +32,6 @@ export const getBook = (req: Request, res: Response): void => {
 
     res.status(200).send(book);
 };
+
+export const getAllBooks = (req: Request, res: Response): void => {
+    res.status(200).send(books)}
