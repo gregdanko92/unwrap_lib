@@ -53,17 +53,19 @@ OK
 
 Trade-offs made in development of this API:
 
-1. For data storage, I used in-memory arrays to store data, making this simpler to test and develop. However, data is not persistent if the server restarts. In the future, I would integrate a persistent database solution. Also, in-memory storage does nothing to handle concurrency issues, but a database integration would help with this as well.
+1. For data storage, I used in-memory arrays to store data, making this simpler to test and develop. However, data is not persistent if the server restarts. In the future, I would integrate a persistent database solution.
 
-2. I kept all of my business logic in the relevant controller, which is acceptable for a project of this size, but in the future, I would move this logic to a separate service layer to improve maintainability.
+2. Also, in-memory storage does nothing to handle concurrency issues, as in if two customers were checking out the last copy of a book at the same time, but using a stable database solution that would account for this would also be a future integration.
 
-3. I kept validation light in the interest of simplicity (input checks only). In the future, I would validate formattable inputs, such as email addresses.
+3. I kept all of my business logic in the relevant controller, which is acceptable for a project of this size, but in the future, I would move this logic to a separate service layer to improve maintainability.
 
-4. The data model does not currently keep a history of the system, such as a customer's checkout history or an audit trail of who checked out a specific book. I would integrate this in the future.
+4. I kept validation light in the interest of simplicity (input checks only). In the future, I would validate formattable inputs, such as email addresses.
 
-5. No authentication was integrated, but it would certainly be a high priority in future versions.
+5. The data model does not currently keep a history of the system, such as a customer's checkout history or an audit trail of who checked out a specific book. I would integrate this in the future.
 
-6. For the `checkout_id`, I am using UUIDv4 to automatically generate unique IDs. In the future, I would expand this pattern to generate customer IDs when creating new customers.
+6. No authentication was integrated, but it would certainly be a high priority in future versions.
+
+7. For the `checkout_id`, I am using UUIDv4 to automatically generate unique IDs. In the future, I would expand this pattern to generate customer IDs when creating new customers.
 
 ---
 
