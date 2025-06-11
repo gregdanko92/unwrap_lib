@@ -1,3 +1,6 @@
+
+/// For development purposes
+
 Test 0 : Reset System
 
 curl -X POST http://localhost:3000/api/reset
@@ -65,7 +68,7 @@ Edge Cases to Test
 
 // Add Book Edge Cases
 
-1. Missing field(s) --> 400 error
+1. Missing field(s) --> 400 "error":"title, author, isbn, and copies are required"
 
 curl -X POST http://localhost:3000/api/books \
   -H "Content-Type: application/json" \
@@ -74,7 +77,7 @@ curl -X POST http://localhost:3000/api/books \
     "author": "Some Author"
   }'
 
-2. Add a book with 0 copies --> 400 error
+2. Add a book with 0 copies --> 400 "error":"copies must be a positive integer"
 
 curl -X POST http://localhost:3000/api/books \
   -H "Content-Type: application/json" \
@@ -85,7 +88,7 @@ curl -X POST http://localhost:3000/api/books \
     "copies": 0
   }'
 
-3. Add a duplicate ISBN, run the normal addBook, then again --> 400 Error
+3. Add a duplicate ISBN, run the normal addBook, then again --> 400 Error "error":"Book with this ISBN already exists
 
 /////
 Create a customer edge Cases
@@ -98,14 +101,14 @@ curl -X POST http://localhost:3000/api/customers \
     "name": "No Email"
   }'
 
-2. Duplicate customer id, use the normal add customer, do it again --> 400 Error
+2. Duplicate customer id, use the normal add customer, do it again --> 400 "error":"Book with this ISBN already exists"}
 
 /////
 
 
 Checkout Edge Cases
 
-1. Checkout book that does not exist --> 404 error
+1. Checkout book that does not exist --> 404 error "error":"Book not found"
 
 curl -X POST http://localhost:3000/api/checkouts \
   -H "Content-Type: application/json" \
@@ -115,7 +118,7 @@ curl -X POST http://localhost:3000/api/checkouts \
     "due_date": "2025-07-01"
   }'
 
-  2. Checkout customer that does not exist --> 404 Error
+  2. Checkout customer that does not exist --> 404 Error "error":"Customer not found"
 
   curl -X POST http://localhost:3000/api/checkouts \
   -H "Content-Type: application/json" \
@@ -125,23 +128,23 @@ curl -X POST http://localhost:3000/api/checkouts \
     "due_date": "2025-07-01"
   }'
 
-  3. Checkout with no available copies, make a book with 1 copy, check it out, try to check it out again with a different customer id (that is registered) --> 400 error
+  3. Checkout with no available copies, make a book with 1 copy, check it out, try to check it out again with a different customer id (that is registered) --> 400 error"error":"No available copies for this book"
 
-  4. Checkout more than 5 books --> create customer, checkout 5 different books, on 6th book --> 400 error
+  4. Checkout more than 5 books --> create customer, checkout 5 different books, on 6th book --> 400 error {"error":"Customer cannot check out more than 5 books"}  
 
-  5. Checkout the same book for the same customer without returning --> 400 error
+  5. Checkout the same book for the same customer without returning --> 400 "error":"Customer has already checked out this book"   
 
   6. Get books for a customer with no books --> returns []
 
   curl -X GET http://localhost:3000/api/customers/CUST001/books
 
-  7. Get books for a customer that doesn't exist --> []
+  7. Get books for a customer that doesn't exist --> returns []
 
   curl -X GET http://localhost:3000/api/customers/NONEXISTENTCUST/books
 
   /////
   Return book edge Cases
-  1. Return a book that is not checked out --> 400 error
+  1. Return a book that is not checked out --> 400 error:"Checkout record not found"
 
   curl -X POST http://localhost:3000/api/returns \
   -H "Content-Type: application/json" \
@@ -150,7 +153,7 @@ curl -X POST http://localhost:3000/api/checkouts \
     "customer_id": "CUST001"
   }'
 
-  2. Return for a customer that doesn't exist yet --> 400 error
+  2. Return for a customer that doesn't exist yet --> 400  error:"Checkout record not found"}%
 
   curl -X POST http://localhost:3000/api/returns \
   -H "Content-Type: application/json" \
@@ -159,11 +162,10 @@ curl -X POST http://localhost:3000/api/checkouts \
     "customer_id": "NONEXISTENTCUST"
   }'
 
-  3. Return a book that doesn't exist --> 400 error
-
+  3. Return a book that doesn't exist --> 400 error :Checkout record not found"}%                                                                                                                                                                 
   curl -X POST http://localhost:3000/api/returns \
   -H "Content-Type: application/json" \
   -d '{
     "isbn": "NONEXISTENTISBN",
-    "customer_id": "CUST001"
+    "customer_id": "CUST002"
   }'

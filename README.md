@@ -34,12 +34,13 @@ II. DEVELOPMENT TRADE OFFS
 
 Trade-offs I made in development of this API:
 
-1. For data storage, I used in-memory arrays to store data, making this simpler to test and develop. However, data is not persistent if the server restarts. In the future I would integrate a persistent database solution. Also, in memory storage does nothing to handle concurrency issues, but a database integration would help with this as well.
-2. In this project I kept all of my business logic in the relevant controller, which I think is ok for a project of this size, but in the future, I would move this logic to a separte service layer to improve the maintainability of the system.
-3. I kept validation light in the interest of keeping the project simple (input checks), in the future I would check that all the formattable inputs, like email addresses are validated. 
-4. Data model does not account for keeping a history of the system, like a customer's checkout history, or an audit trail of who checked out a specific book, would integrate this in the future.
-5. No authentication was integrated, but would certainly be a high priority in the future.
-6. For the checkout_id, using UUIDV4 to automatically generate ids. in the future I would expand this to generate customer ids when creating new customers 
+1. For data storage, I used in-memory Maps to store customers and books, making this simpler to test and develop. I used an array for the checkouts in order to avoid doing multi-key lookups
+2. Also, in memory storage does nothing to handle concurrency issues, but a database integration would help with this as well, using either Atomic updates, or transactions.
+3. In this project I kept all of my business logic in the relevant controller, which I think is ok for a project of this size, but in the future, I would move this logic to a separte service layer to improve the maintainability of the system.
+4. I kept validation light in the interest of keeping the project simple (input checks), in the future I would check that all the formattable inputs, like email addresses are validated. 
+5. Data model does not account for keeping a history of the system, like a customer's checkout history, or an audit trail of who checked out a specific book, would integrate this in the future.
+6. No authentication was integrated, but would certainly be a high priority in the future.
+7. For the checkout_id, using UUIDV4 to automatically generate ids. in the future I would expand this to generate customer ids when creating new customers 
 
 
 //////

@@ -1,3 +1,5 @@
+
+// these interfaces will define the shape of the data, type checking
 export interface Book {
     title: string;
     author: string;
@@ -21,7 +23,7 @@ export interface Checkout {
     due_date: string;
 }
 
-//in mem databases
-export const books: Book[] = [];
-export const customers: Customer[] = [];
+//in memory databases
+export const books = new Map<string, Book>();        // Key = isbn
+export const customers = new Map<string, Customer>(); // Key = customer_id
 export const checkouts: Checkout[] = [];

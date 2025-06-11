@@ -5,8 +5,20 @@ import { v4 as uuidv4 } from 'uuid';
 export const checkoutBook = (req: Request, res: Response): void => {
     const { isbn, customer_id, due_date } = req.body;
 
-    const customer = customers.find(c => c.customer_id === customer_id);
-    const book = books.find(b => b.isbn === isbn);
+    const customer = customers.get(customer_id);
+
+    if (!customer) {
+        res.status(404).send({ error: 'Customer not found' });
+        return;
+    }
+
+    const book = books.get(isbn);
+
+    if (!book) {
+        res.status(404).send({ error: 'Book not found' });
+        return;
+    }
+
 
     if (!customer) {
         res.status(404).send({ error: 'Customer not found' });
@@ -64,7 +76,12 @@ export const returnBook = (req: Request, res: Response): void => {
     checkouts.splice(checkoutIndex, 1);
 
     // Increase book available copies
-    const book = books.find(b => b.isbn === isbn);
+const book = books.get(isbn);
+
+if (!book) {
+    res.status(404).send({ error: 'Book not found' });
+    return;
+}
     if (book) {
         book.available_copies += 1;
     }
