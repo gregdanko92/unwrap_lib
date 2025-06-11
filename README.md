@@ -56,7 +56,7 @@ Trade-offs made in development of this API:
 
 7. For the `checkout_id`, I am using UUIDv4 to automatically generate unique IDs. In the future, I would expand this pattern to generate customer IDs when creating new customers as opposed to having them provided by the user. 
 
-8. A front end was not in the scope of this project, but for that I would elect to create a React application with Typsescript
+8. A front end was not in the scope of this project, but for that I would elect to create a React application with Typsescript.
 
 9. For a future database integration, I would use PostgreSQL over MongoDB due to the rules we have for checking out books, no duplicate checkouts, no more than 5 copies, etc. Since these rules are relational constraints, that would come naturally to a Postgres system.
 ---
