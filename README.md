@@ -32,7 +32,9 @@ npm run start
 
 **Running the provided Python tests:**  
 In a separate terminal tab:
+```python
   python3 test_library_api.py
+```
 
 ---
 
