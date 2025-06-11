@@ -59,7 +59,7 @@ Trade-offs made in development of this API:
 
 3. I kept all of my business logic in the relevant controller, which is acceptable for a project of this size, but in the future, I would move this logic to a separate service layer to improve maintainability.
 
-4. I kept validation light in the interest of simplicity (input checks only). In the future, I would validate formattable inputs, such as email addresses.
+4. I kept validation lightweight in the interest of simplicity (input checks only). In the future, I would validate formattable inputs, such as email addresses.
 
 5. The data model does not currently keep a history of the system, such as a customer's checkout history or an audit trail of who checked out a specific book. I would integrate this in the future.
 
