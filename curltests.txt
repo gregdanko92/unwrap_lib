@@ -101,6 +101,8 @@ curl -X POST http://localhost:3000/api/customers \
 2. Duplicate customer id, use the normal add customer, do it again --> 400 Error
 
 /////
+
+
 Checkout Edge Cases
 
 1. Checkout book that does not exist --> 404 error

@@ -49,3 +49,6 @@ export const getCustomerBooks = (req: Request, res: Response): void => {
 
     res.status(200).send(customerCheckouts);
 };
+
+export const getAllCustomers = (req: Request, res: Response): void => {
+    res.status(200).send(customers)}
