@@ -88,7 +88,7 @@ curl -X POST http://localhost:3000/api/books \
     "copies": 0
   }'
 
-3. Add a duplicate ISBN, run the normal addBook, then again --> 400 Error "error":"Book with this ISBN already exists
+3. Add a duplicate ISBN, run the normal addBook, then again --> 400 Error "error":"Book with this ISBN already exists"
 
 /////
 Create a customer edge Cases
@@ -101,7 +101,7 @@ curl -X POST http://localhost:3000/api/customers \
     "name": "No Email"
   }'
 
-2. Duplicate customer id, use the normal add customer, do it again --> 400 "error":"Book with this ISBN already exists"}
+2. Duplicate customer id, use the normal add customer, do it again --> 400 {"error":"Customer with this ID already exists"}% 
 
 /////
 
@@ -128,7 +128,7 @@ curl -X POST http://localhost:3000/api/checkouts \
     "due_date": "2025-07-01"
   }'
 
-  3. Checkout with no available copies, make a book with 1 copy, check it out, try to check it out again with a different customer id (that is registered) --> 400 error"error":"No available copies for this book"
+  3. Checkout with no available copies, make a book with 1 copy, check it out, try to check it out again with a different customer id (that is registered) --> 400 error "error":"No available copies for this book"
 
   4. Checkout more than 5 books --> create customer, checkout 5 different books, on 6th book --> 400 error {"error":"Customer cannot check out more than 5 books"}  
 
