@@ -42,13 +42,13 @@ In a separate terminal tab:
 
 Trade-offs made in development of this API:
 
-1. For data storage, I used in-memory Maps to store customers and books, making this simpler to test and develop. I used an in-memory array for the checkouts in order to avoid doing multi-key lookups. However, data is not persistent if the server restarts. In the future, I would integrate a persistent database solution.
+1. For data storage, I used in-memory Maps to store customers and books, making this simpler to test and develop as well as for fast lookups. I used an in-memory array for the checkouts in order to avoid doing multi-key lookups. However, data is not persistent if the server restarts. In the future, I would integrate a persistent database solution.
 
 2. Also, in-memory storage does nothing to handle concurrency issues, as in if two customers were checking out the last copy of a book at the same time, but using a database solution that would account for this (using atomic updates, or transactions) would also be a future integration. 
 
 3. I kept all of my business logic in the relevant controller, which is acceptable for a project of this size, but in the future, I would move this logic to a separate service layer to improve maintainability.
 
-4. I kept validation lightweight in the interest of simplicity (input checks only). In the future, I would validate formattable inputs, such as email addresses.
+4. I kept validation lightweight in the interest of simplicity (input checks only). In the future, I would validate formattable inputs, such as email addresses or relevant dates.
 
 5. The data model does not currently keep a history of the system, such as a customer's checkout history or an audit trail of who checked out a specific book. I would integrate this in the future.
 
